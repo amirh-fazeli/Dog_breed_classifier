@@ -14,6 +14,9 @@ size_scales = {
     "Extra Large": 120
 }
 
+def normalize_breed_name(name: str) -> str:
+    return name.replace("_", " ").strip()
+
 def render_size_silhouettes(breed_size):
     size_order = ["Extra Small", "Small", "Medium", "Large", "Extra Large"]
     base_img_path = "data/size.png"
@@ -65,7 +68,8 @@ def predict_and_info(img):
 
     # --- Gallery for predicted breed ---
     main_gallery = []
-    img_dir = os.path.join("data", "images", breed)
+    breed_fs_name = normalize_breed_name(pred)  # use the raw prediction, not info['breed']
+    img_dir = os.path.join("data", "images", breed_fs_name)
     if os.path.exists(img_dir):
         all_imgs = [os.path.join(img_dir, f) for f in os.listdir(img_dir)
                     if f.lower().endswith((".jpg", ".jpeg", ".png"))]
