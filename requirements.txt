@@ -1,7 +1,11 @@
 torch
 torchvision
+pycountry
+numpy
+pandas
 tqdm
 Pillow
 scikit-learn
 matplotlib
 gradio
+requests
